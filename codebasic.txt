@@ -1,0 +1,319 @@
+ch1
+import numpy as np
+import pandas as pd
+df1=pd.read_csv('/home/nikhom/jupyterpractice/codebasic/Fremont_weather.txt')
+df2=pd.read_csv('/home/nikhom/jupyterpractice/codebasic/Admission_Predict_Ver1.1.csv')
+
+df1
+
+ 	month 	avg_high 	avg_low 	record_high 	record_low 	avg_precipitation 	season
+0 	Jan 	58.0 	42 	74 	22 	2.95 	winter
+1 	Feb 	61.0 	45 	78 	26 	3.02 	winter
+2 	Mar 	65.0 	48 	84 	25 	2.34 	winter
+3 	Apr 	67.0 	50 	92 	28 	1.02 	summer
+4 	May 	NaN 	53 	98 	35 	0.48 	summer
+5 	Jun 	75.0 	56 	107 	41 	0.11 	summer
+6 	Jul 	77.0 	58 	105 	44 	0.00 	rainy
+7 	Aug 	NaN 	59 	102 	43 	0.03 	rainy
+8 	Sep 	77.0 	57 	103 	40 	0.17 	rainy
+9 	Oct 	73.0 	54 	96 	34 	0.81 	rainy
+10 	Nov 	64.0 	48 	84 	30 	1.70 	rainy
+11 	Dec 	58.0 	42 	73 	21 	2.56 	winter
+
+df1.fillna(0,inplace=True)
+df1
+ 	month 	avg_high 	avg_low 	record_high 	record_low 	avg_precipitation 	season
+0 	Jan 	58.0 	42 	74 	22 	2.95 	winter
+1 	Feb 	61.0 	45 	78 	26 	3.02 	winter
+2 	Mar 	65.0 	48 	84 	25 	2.34 	winter
+3 	Apr 	67.0 	50 	92 	28 	1.02 	summer
+4 	May 	0.0 	53 	98 	35 	0.48 	summer
+5 	Jun 	75.0 	56 	107 	41 	0.11 	summer
+6 	Jul 	77.0 	58 	105 	44 	0.00 	rainy
+7 	Aug 	0.0 	59 	102 	43 	0.03 	rainy
+8 	Sep 	77.0 	57 	103 	40 	0.17 	rainy
+9 	Oct 	73.0 	54 	96 	34 	0.81 	rainy
+10 	Nov 	64.0 	48 	84 	30 	1.70 	rainy
+11 	Dec 	58.0 	42 	73 	21 	2.56 	winter
+
+df1['avg_low'].max()
+59
+
+df1['avg_low'].describe()
+count    12.000000
+mean     51.000000
+std       6.060303
+min      42.000000
+25%      47.250000
+50%      51.500000
+75%      56.250000
+max      59.000000
+Name: avg_low, dtype: float64
+
+df1.avg_low.max()
+59
+
+df1['avg_low'].describe()
+count    12.000000
+mean     51.000000 (avg)
+std       6.060303
+min      42.000000
+25%      47.250000
+50%      51.500000
+75%      56.250000
+max      59.000000
+Name: avg_low, dtype: float64
+
+================================================
+Dataframe info
+
+import numpy as np
+import pandas as pd
+df1=pd.read_csv('/home/nikhom/jupyterpractice/codebasic/Fremont_weather.txt')
+df2=pd.read_csv('/home/nikhom/jupyterpractice/codebasic/Admission_Predict_Ver1.1.csv')
+
+df1
+ 	month 	avg_high 	avg_low 	record_high 	record_low 	avg_precipitation 	season
+0 	Jan 	58.0 	42 	74 	22 	2.95 	winter
+1 	Feb 	61.0 	45 	78 	26 	3.02 	winter
+2 	Mar 	65.0 	48 	84 	25 	2.34 	winter
+3 	Apr 	67.0 	50 	92 	28 	1.02 	summer
+4 	May 	0.0 	53 	98 	35 	0.48 	summer
+5 	Jun 	75.0 	56 	107 	41 	0.11 	summer
+6 	Jul 	77.0 	58 	105 	44 	0.00 	rainy
+7 	Aug 	0.0 	59 	102 	43 	0.03 	rainy
+8 	Sep 	77.0 	57 	103 	40 	0.17 	rainy
+9 	Oct 	73.0 	54 	96 	34 	0.81 	rainy
+10 	Nov 	64.0 	48 	84 	30 	1.70 	rainy
+11 	Dec 	58.0 	42 	73 	21 	2.56 	winter
+
+type(df1['avg_low'])
+pandas.core.series.Series
+
+df1.dtypes
+month                 object
+avg_high             float64
+avg_low                int64
+record_high            int64
+record_low             int64
+avg_precipitation    float64
+season                object
+dtype: object
+
+df1.index
+RangeIndex(start=0, stop=12, step=1)
+
+df1.shape
+(12, 7)
+
+df1.columns
+Index(['month', 'avg_high', 'avg_low', 'record_high', 'record_low',
+       'avg_precipitation', 'season'],
+      dtype='object')
+
+df1.values
+array([['Jan', 58.0, 42, 74, 22, 2.95, 'winter'],
+       ['Feb', 61.0, 45, 78, 26, 3.02, 'winter'],
+       ['Mar', 65.0, 48, 84, 25, 2.34, 'winter'],
+       ['Apr', 67.0, 50, 92, 28, 1.02, 'summer'],
+       ['May', nan, 53, 98, 35, 0.48, 'summer'],
+       ['Jun', 75.0, 56, 107, 41, 0.11, 'summer'],
+       ['Jul', 77.0, 58, 105, 44, 0.0, 'rainy'],
+       ['Aug', nan, 59, 102, 43, 0.03, 'rainy'],
+       ['Sep', 77.0, 57, 103, 40, 0.17, 'rainy'],
+       ['Oct', 73.0, 54, 96, 34, 0.81, 'rainy'],
+       ['Nov', 64.0, 48, 84, 30, 1.7, 'rainy'],
+       ['Dec', 58.0, 42, 73, 21, 2.56, 'winter']], dtype=object)
+
+rows,columns=df1.shape
+rows
+12
+columns
+7
+
+df1.head(2)
+ 	month 	avg_high 	avg_low 	record_high 	record_low 	avg_precipitation 	season
+0 	Jan 	58.0 	42 	74 	22 	2.95 	winter
+1 	Feb 	61.0 	45 	78 	26 	3.02 	winter
+
+df1.tail(2)
+	month 	avg_high 	avg_low 	record_high 	record_low 	avg_precipitation 	season
+10 	Nov 	64.0 	48 	84 	30 	1.70 	rainy
+11 	Dec 	58.0 	42 	73 	21 	2.56 	winter
+
+df1.sort_values('avg_low',ascending=False).head(5)
+
+	month 	avg_high 	avg_low 	record_high 	record_low 	avg_precipitation 	season
+7 	Aug 	NaN 	59 	102 	43 	0.03 	rainy
+6 	Jul 	77.0 	58 	105 	44 	0.00 	rainy
+8 	Sep 	77.0 	57 	103 	40 	0.17 	rainy
+5 	Jun 	75.0 	56 	107 	41 	0.11 	summer
+9 	Oct 	73.0 	54 	96 	34 	0.81 	rainy
+
+
+=====================
+Data Slicing
+df1[2:3]
+ 	month 	avg_high 	avg_low 	record_high 	record_low 	avg_precipitation 	season
+2 	Mar 	65.0 	48 	84 	25 	2.34 	winter
+
+df1[:2]
+ 	month 	avg_high 	avg_low 	record_high 	record_low 	avg_precipitation 	season
+0 	Jan 	58.0 	42 	74 	22 	2.95 	winter
+1 	Feb 	61.0 	45 	78 	26 	3.02 	winter
+
+
+df1.avg_high
+df1['avg_high']
+0     58.0
+1     61.0
+2     65.0
+3     67.0
+4      0.0
+5     75.0
+6     77.0
+7      0.0
+8     77.0
+9     73.0
+10    64.0
+11    58.0
+Name: avg_high, dtype: float64
+
+df1[['avg_low','avg_high']]
+ 	avg_low 	avg_high
+0 	42 	58.0
+1 	45 	61.0
+2 	48 	65.0
+3 	50 	67.0
+4 	53 	0.0
+5 	56 	75.0
+6 	58 	77.0
+7 	59 	0.0
+8 	57 	77.0
+9 	54 	73.0
+10 	48 	64.0
+11 	42 	58.0
+
+df1.loc[0:2,['avg_low','avg_high']]
+	avg_low 	avg_high
+0 	42 	58.0
+1 	45 	61.0
+2 	48 	65.0
+
+df1.loc[2,['avg_low','avg_high']]
+avg_low     48
+avg_high    65
+Name: 2, dtype: object
+
+df1.iloc[0:2,[1,2,3]]
+
+	avg_high 	avg_low 	record_high
+0 	58.0 	42 	74
+1 	61.0 	45 	78
+
+=======================================
+df1.avg_low[df1.avg_low>50]
+4    53
+5    56
+6    58
+7    59
+8    57
+9    54
+Name: avg_low, dtype: int64
+
+df1.month[df1['month'].isin(['Jan','Feb'])]
+0    Jan
+1    Feb
+Name: month, dtype: object
+
+=================================
+Data Assignment
+
+df1.head(2)
+ 	month 	avg_high 	avg_low 	record_high 	record_low 	avg_precipitation 	season
+0 	Jan 	58.0 	42 	74 	22 	2.95 	winter
+1 	Feb 	61.0 	45 	78 	26 	3.02 	winter
+
+df1.loc[0:1,['avg_low','avg_high']]=100
+df1.head(2)
+	month 	avg_high 	avg_low 	record_high 	record_low 	avg_precipitation 	season
+0 	Jan 	100.0 	100 	74 	22 	2.95 	winter
+1 	Feb 	100.0 	100 	78 	26 	3.02 	winter
+
+df1.loc[0:1,['avg_low','avg_high']]=np.nan
+df1.head(2)
+	month 	avg_high 	avg_low 	record_high 	record_low 	avg_precipitation 	season
+0 	Jan 	NaN 	NaN 	74 	22 	2.95 	winter
+1 	Feb 	NaN 	NaN 	78 	26 	3.02 	winter
+
+df1[['avg_low','record_low']]=100
+df1
+
+month 	avg_high 	avg_low 	record_high 	record_low 	avg_precipitation 	season
+0 	Jan 	NaN 	100 	74 	100 	2.95 	winter
+1 	Feb 	NaN 	100 	78 	100 	3.02 	winter
+2 	Mar 	65.0 	100 	84 	100 	2.34 	winter
+3 	Apr 	67.0 	100 	92 	100 	1.02 	summer
+4 	May 	NaN 	100 	98 	100 	0.48 	summer
+5 	Jun 	75.0 	100 	107 	100 	0.11 	summer
+6 	Jul 	77.0 	100 	105 	100 	0.00 	rainy
+7 	Aug 	NaN 	100 	102 	100 	0.03 	rainy
+8 	Sep 	77.0 	100 	103 	100 	0.17 	rainy
+9 	Oct 	73.0 	100 	96 	100 	0.81 	rainy
+10 	Nov 	64.0 	100 	84 	100 	1.70 	rainy
+11 	Dec 	58.0 	100 	73 	100 	2.56 	winter
+
+df1[['avg_low']]=np.array([1,2,3,4,5,6,7,8,9,10,11,12])
+ 	month 	avg_high 	avg_low 	record_high 	record_low 	avg_precipitation 	season
+0 	Jan 	NaN 	1 	74 	100 	2.95 	winter
+1 	Feb 	NaN 	2 	78 	100 	3.02 	winter
+2 	Mar 	65.0 	3 	84 	100 	2.34 	winter
+3 	Apr 	67.0 	4 	92 	100 	1.02 	summer
+4 	May 	NaN 	5 	98 	100 	0.48 	summer
+5 	Jun 	75.0 	6 	107 	100 	0.11 	summer
+6 	Jul 	77.0 	7 	105 	100 	0.00 	rainy
+7 	Aug 	NaN 	8 	102 	100 	0.03 	rainy
+8 	Sep 	77.0 	9 	103 	100 	0.17 	rainy
+9 	Oct 	73.0 	10 	96 	100 	0.81 	rainy
+10 	Nov 	64.0 	11 	84 	100 	1.70 	rainy
+11 	Dec 	58.0 	12 	73 	100 	2.56 	winter
+
+len(df1)
+12
+
+np.array([5]*len(df1))
+array([5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5])
+
+=========================================
+Rename columns
+
+df1.head(1)
+ 	month 	avg_high 	average_low 	record_high 	record_low 	avg_precipitation 	season
+0 	Jan 	58.0 	42 	74 	22 	2.95 
+
+df1.rename(columns={'avg_low':'average_low'},inplace=True)
+	month 	avg_high 	average_low 	record_high 	record_low 	avg_precipitation 	season
+0 	Jan 	58.0 	42 	74 	22 	2.95 	winter
+
+df1.columns=['a','b','c','d','e','f','g']
+df1.columns
+Index(['a', 'b', 'c', 'd', 'e', 'f', 'g'], dtype='object')
+
+for index, row in df1.iterrows():
+    print(index,row['month'])
+0 Jan
+1 Feb
+2 Mar
+3 Apr
+4 May
+5 Jun
+6 Jul
+7 Aug
+8 Sep
+9 Oct
+10 Nov
+11 Dec
+==========================================
+write df to csv file
+
+df1.to_csv('new.csv')
