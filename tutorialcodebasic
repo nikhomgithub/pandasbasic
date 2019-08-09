@@ -51,9 +51,39 @@ df['day','temp'][df.temp=df['temp'].max()]
 set index
 ---------
 df.index
-df.set_index('day',inplace=True)
+df.set_index('day',inplace=True)    mean change index of data tobe day
 df.loc['1/1/2017']            mean to see at index='1/1/2017'
-df.reset_index(inplace=True)
+df.reset_index(inplace=True)    mean change index back to original
 
+
+*********************************
+ch3
+===
+import panda as pd
+df=pd.read_csv("\home\nikhom\weather_data.csv")
+df=pd.read_excel("\home\nikhom\weather_data.csv")
+
+wheather_data={                 mean dictionay to show in ofject of key :Array of data
+  'day':['1/1/2017','1/2/2017','1/3/2017'],
+  'temp':[35,36,37],
+  'wind':[5,6,7],
+  'event':['snow','rain,'sunny']
+}
+or
+wheather_data=[                 mean dictionary = array of object
+  {'day':'1/1/2017','day':'1/2/2017','day':'1/3/2017'},
+  {'temp':35,'temp':36,'temp':37},
+  {'wind':5,'wind':6,'wind':7},
+  {'event':'snow','event':'rain,'event':'sunny'}
+]
+
+df=pd.DataFrame(weather_data)    mean from dictionary
+
+weather_data=[                  tupple mean show data row by row
+  ('1/1/2017',35,'snow'),
+  ('1/2/2017',36,'rain'),
+  ('1/3/2017',37,'sunny')
+]
+df=pd.DataFrame(weather_data,columns=["date","temp","wind","event"]
 
 
