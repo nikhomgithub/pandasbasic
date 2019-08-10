@@ -1,3 +1,9 @@
+There are 3 way to use Panda
+1. Write in python with vscode
+2. Write in Jupyter notebook
+3. Write in Collab Server
+
+
 ch2 DataFrame Basic
 ===================
 with jupyternotebook
@@ -104,18 +110,36 @@ RIL,not available,50,1023,mukesh ambani
 TATA,5.6,-1,n.a,ratan tata
 
 import pandas as pd
-df=pd.read_csv("stock_data.csv",header=1,nrows=3)   
+df=pd.read_csv("stock_data.csv",header=1,nrows=3)   or skiprows=1 instead of header
  
-    mean header index start = 0, nrows=read only 3 row
-    if no header on csv header=None, 
-    names=["ticket","eps","revenue","price","people"]
+    mean header index start from 0, 
+    nrows=3 mean read only 3 row
+    if no header on csv 
+    header=None, names=["ticket","eps","revenue","price","people"]
     na_values=["not available","n.a."]  mean to replace these words with Nan
     na_values={                         mean to replace in each column
       'eps':["not available","n.a."],
       'revenue':["not available","n.a.",-1],
       'people':["not available","n.a."]
     }
-    
+
+writing csv
+df.to_csv('new.csv') mean to write these csv file to folder
+df.to_csv('new_no_index.csv',index=False) mean to write this csv file without index column
+df.to_csv('new.csv',columns=['tickers','eps'],header=False) mean to write new.csv with 2 columns, without header
+
+df=pd.read_excel("/home/nikhom/data/stock_data.exl","Sheet1") mean to load data
+
+now we can use function with pada
+
+def convert_people_cell(cell):
+  if cell=="n.a."
+    return 'sam walton'
+  return cell
+
+df=pd.read_excel("/home/nikom/data/stock_data.exel","Sheet1",coverters{
+  'people':convert_people_cell
+})
 
 
 
