@@ -1,5 +1,5 @@
-ch2
-===
+ch2 DataFrame Basic
+===================
 with jupyternotebook
 
 createDF
@@ -57,18 +57,23 @@ df.reset_index(inplace=True)    mean change index back to original
 
 
 *********************************
-ch3
-===
+ch3 create dataFrame
+====================
 import panda as pd
+1)
 df=pd.read_csv("\home\nikhom\weather_data.csv")
 df=pd.read_excel("\home\nikhom\weather_data.csv")
 
+2)
 wheather_data={                 mean dictionay to show in ofject of key :Array of data
   'day':['1/1/2017','1/2/2017','1/3/2017'],
   'temp':[35,36,37],
   'wind':[5,6,7],
   'event':['snow','rain,'sunny']
 }
+df=pd.DataFrame(weather_data)    mean from dictionary
+
+3)
 or
 wheather_data=[                 mean dictionary = array of object
   {'day':'1/1/2017','day':'1/2/2017','day':'1/3/2017'},
@@ -76,14 +81,49 @@ wheather_data=[                 mean dictionary = array of object
   {'wind':5,'wind':6,'wind':7},
   {'event':'snow','event':'rain,'event':'sunny'}
 ]
-
 df=pd.DataFrame(weather_data)    mean from dictionary
 
+4)
 weather_data=[                  tupple mean show data row by row
   ('1/1/2017',35,'snow'),
   ('1/2/2017',36,'rain'),
   ('1/3/2017',37,'sunny')
 ]
 df=pd.DataFrame(weather_data,columns=["date","temp","wind","event"]
+
+See more in https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html
+
+****************************************************************
+ch4 Read & Write csv,excel file
+===============================
+csv file is string with , as separator
+ticket,eps,revenue,price,people
+Googl,27.82,87,845,Lary Page
+WMT,4.61,484,65,n.a
+RIL,not available,50,1023,mukesh ambani
+TATA,5.6,-1,n.a,ratan tata
+
+import pandas as pd
+df=pd.read_csv("stock_data.csv",header=1,nrows=3)   
+ 
+    mean header index start = 0, nrows=read only 3 row
+    if no header on csv header=None, 
+    names=["ticket","eps","revenue","price","people"]
+    na_values=["not available","n.a."]  mean to replace these words with Nan
+    na_values={                         mean to replace in each column
+      'eps':["not available","n.a."],
+      'revenue':["not available","n.a.",-1],
+      'people':["not available","n.a."]
+    }
+    
+
+
+
+
+
+
+
+
+
 
 
