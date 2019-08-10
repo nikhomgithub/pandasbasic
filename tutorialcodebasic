@@ -149,6 +149,49 @@ with pd.ExcelWriter('stock_weather.xlsx') as writer:
   df_stock.to_excel(writer,sheet_name="stocks")
   df_weather.to_excel(writer,sheet_name="weather")
 
+**********************************************
+ch5 Missing data: fillna, dropna, interpolate
+=============================================
+import pandas as pd
+df=pd.read_csv("weather_data.csv")
+type(df.day[0]) mean to ready column day, row = 0 > str
+
+df=pd.read_csv("weather_data.csv",parse_dates=["date"])
+type(df.day[0]) mean timestamp
+
+df.set_index('dat',inplace=True)
+
+fillna
+------
+fillna with 0
+new_df=df.fillna(0)   mean fill Nan with 0
+
+fillna with 0 , 'no event'
+new_df=df.fillna({
+  'temp':0,
+  'wind':0,
+  'event':'no event'
+})
+
+new_df=df.fillna(method="ffill",axis="row",limit=1) mean to use n-1 value forward
+     ,only 1 can forward, in row direction, 
+
+new_df=df.fillna(method="bfill",axix="row",limit=1) mean to use n-1 value backward
+
+new_df=df.interporate()  mean to use middel value 
+new_df=df.interporate(method="time")  mean to use liniear calculation
+
+new_df=df.dropna()    mean leave out row that contain Nan >= 1
+new_df=df.dropna(how="all") mean leave out row when every column has NaN
+new_df=df.dropna(thresh=1)   mean show the row that have value at least 1 value
+new_df=df.dropna(thresh=2)   mean show the row that have value at least 2 value
+
+insert row by estimation
+dt=pd.date_range("01-01-2017","01-01-2017")  mean put date_range for estimation
+idx=pd.DateTimeIndex(dt)                     mean estimate index of Date
+new_df=df.reindex(idx)                   
+
+
 
 
 
