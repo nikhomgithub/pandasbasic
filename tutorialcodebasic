@@ -141,11 +141,13 @@ df=pd.read_excel("/home/nikom/data/stock_data.exel","Sheet1",coverters{
   'people':convert_people_cell
 })
 
+pd.to_excel('new.xls',sheet_name="stock",startrow=1,startcol=2,index=False)
 
-
-
-
-
+Write 2 df in 1 exel, 2 sheets
+------------------------------
+with pd.ExcelWriter('stock_weather.xlsx') as writer:
+  df_stock.to_excel(writer,sheet_name="stocks")
+  df_weather.to_excel(writer,sheet_name="weather")
 
 
 
